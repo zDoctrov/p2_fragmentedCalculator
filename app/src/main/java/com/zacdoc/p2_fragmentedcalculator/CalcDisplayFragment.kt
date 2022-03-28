@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.zacdoc.p2_fragmentedcalculator.databinding.FragmentCalcDisplayBinding
+import kotlin.math.roundToInt
+import kotlin.math.truncate
 
 class CalcDisplayFragment : Fragment() {
 
@@ -38,6 +40,15 @@ class CalcDisplayFragment : Fragment() {
 
     fun calculateCurrentDisplay(){
         var calc = Calculations()
-        calc.Calculate( binding.displayTextView.text.toString())
+        var result = calc.Calculate( binding.displayTextView.text.toString())
+
+        //Truncate to integer if decimal place contains zero
+        if(result.toString().contains(Regex("^[0-9]\\d*(\\.[1-9]+)?\$"))){
+            binding.displayTextView.text = result.toString()
+        }
+        else{
+            binding.displayTextView.text = result.roundToInt().toString()
+        }
+
     }
 }

@@ -4,14 +4,24 @@ class Calculations {
 //    "[A-Z0-9<\n]+".toRegex().matches(inputEquation)
 
     //Searches for any of the known operators and recursively breaks the math problem in PEMDAS order
-    fun Calculate(inputEquation: String){
+    fun Calculate (inputEquation: String): Double{
         //Subtraction / Negative numbers
         if(inputEquation.contains('-')){
-            print("Subtraction/Negative number")
+            print("Subtraction/Negative number\n")
         }
         //Addition
         else if(inputEquation.contains('+')){
             print("Addition\n")
+            if(inputEquation.contains(Regex("[0-9]+\\+[0-9]+"))){
+                print("Addition done right :>\n")
+                var sum = Calculate(inputEquation.split(Regex("\\+"), 2)[0]) + Calculate(inputEquation.split(Regex("\\+"), 2)[1])
+                print("$sum\n")
+                return sum
+            }
+            else{
+                print("Addition done WRONG >:(\n")
+
+            }
         }
         //Multiplication
         else if(inputEquation.contains('*')){
@@ -25,14 +35,18 @@ class Calculations {
         else if(inputEquation.contains('%')){
             print("Modulus\n")
         }
-        //(Base Case) Numbers
-        else if(inputEquation.contains("[0-9<]+")){
+        //(Base Case) Decimal & Integer values only
+        //TODO: Make it so .1 + .1 results in .2
+        else if(inputEquation.contains(Regex("^[+-]?[0-9]+\\.?[0-9]*\$"))
+                    || inputEquation.contains(Regex("^\\.[0-9]+\$"))){
             print("Numbers\n")
+            return inputEquation.toDouble()
         }
         //Errors
         else{
             print("BRUH WHAT IS THIS????\n")
         }
+        return 0.0
     }
 
 }
