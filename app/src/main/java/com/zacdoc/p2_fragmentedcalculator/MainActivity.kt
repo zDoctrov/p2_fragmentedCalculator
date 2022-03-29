@@ -16,7 +16,7 @@ class MainActivity : FragmentActivity(), CalcButtonsFragment.CalcButtonsListener
 
     override fun squareRoot() {
         val calcDisplayFragment = supportFragmentManager.findFragmentById(R.id.calcDisplayFragment) as CalcDisplayFragment
-        calcDisplayFragment.resetTextProperties()
+        calcDisplayFragment.calculateSquareRoot()
     }
 
     override fun clearEntry() {

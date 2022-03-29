@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:minHeight="60dp"
+        android:minHeight="20dp"
         android:orientation="horizontal">
 
         <Button
@@ -80,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:minHeight="60dp"
+        android:minHeight="20dp"
         android:orientation="horizontal">
 
         <Button
@@ -148,7 +148,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:minHeight="60dp"
+        android:minHeight="20dp"
         android:orientation="horizontal">
 
         <Button
@@ -216,7 +216,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:minHeight="60dp"
+        android:minHeight="20dp"
         android:orientation="horizontal">
 
         <Button
@@ -290,7 +290,7 @@
         android:layout_weight="1"
         android:background="@color/orange"
         android:maxWidth="200dp"
-        android:minHeight="60dp"
+        android:minHeight="48dp"
         android:text="="
         android:textSize="24sp"
         android:textStyle="bold" />
