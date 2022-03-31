@@ -57,7 +57,7 @@ class CalcDisplayFragment : Fragment() {
     }
 
     fun calculateSquareRoot(){
-        binding.displayTextView.setText("Math.sqrt(" + binding.displayTextView.text.toString() + ")")
+        binding.displayTextView.setText("Math.sqrt(" + binding.displayTextView.text.toString().toDouble().toInt().toString() + ")")
         calculateCurrentDisplay()
 
     }
