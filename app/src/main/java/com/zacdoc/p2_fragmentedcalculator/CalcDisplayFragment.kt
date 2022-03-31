@@ -36,7 +36,6 @@ class CalcDisplayFragment : Fragment() {
         else{
             binding.displayTextView.text = binding.displayTextView.text.toString() + text
         }
-
     }
 
     fun resetTextProperties(){
@@ -48,12 +47,7 @@ class CalcDisplayFragment : Fragment() {
         binding.displayTextView.text = currentDisplayText.subSequence(0, currentDisplayText.length - 1)
     }
 
-    fun truncateToInteger(){
-
-    }
-
     fun calculateCurrentDisplay(){
-
         //Use the MOZILLA RHINO - JavaScript Engine library to solve the display's arithmetic
         val context: Context = Context.enter()
         context.setOptimizationLevel(-1)

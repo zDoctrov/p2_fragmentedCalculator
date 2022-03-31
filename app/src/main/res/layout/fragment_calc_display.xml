@@ -10,10 +10,10 @@
         android:id="@+id/displayTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:maxLines="1"
-        android:maxLength="20"
         android:ellipsize="end"
-        android:text="@string/empty"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:text="123456789"
         android:textSize="50sp"
         android:textStyle="bold" />
 </FrameLayout>
