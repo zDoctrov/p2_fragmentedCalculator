@@ -60,7 +60,7 @@ class CalcButtonsFragment : Fragment() {
         binding.eightButton.setOnClickListener{v: View -> buttonClicked(v, "8")}
         binding.nineButton.setOnClickListener{v: View -> buttonClicked(v, "9")}
 
-        binding.divisionButton.setOnClickListener{v: View -> buttonClicked(v, "÷")}
+        binding.divisionButton.setOnClickListener{v: View -> buttonClicked(v, "/")}
         binding.multiplyButton.setOnClickListener{v: View -> buttonClicked(v, "*")}
         binding.subtractButton.setOnClickListener{v: View -> buttonClicked(v, "-")}
         binding.addButton.setOnClickListener{v: View -> buttonClicked(v, "+")}

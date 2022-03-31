@@ -1,15 +1,18 @@
 package com.zacdoc.p2_fragmentedcalculator
-
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Scriptable;
+import android.util.Log;
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.zacdoc.p2_fragmentedcalculator.databinding.FragmentCalcDisplayBinding
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
-import kotlin.math.truncate
 
+
+//TODO: Need to make a separate file for vertical and horizontal versions of screen
 class CalcDisplayFragment : Fragment() {
 
     private lateinit var binding: FragmentCalcDisplayBinding
@@ -27,7 +30,13 @@ class CalcDisplayFragment : Fragment() {
     }
 
     fun changeTextProperties(text: String){
-        binding.displayTextView.text = binding.displayTextView.text.toString() + text
+        if( binding.displayTextView.text.toString() == "ERROR"){
+            binding.displayTextView.text =  text
+        }
+        else{
+            binding.displayTextView.text = binding.displayTextView.text.toString() + text
+        }
+
     }
 
     fun resetTextProperties(){
@@ -39,28 +48,23 @@ class CalcDisplayFragment : Fragment() {
         binding.displayTextView.text = currentDisplayText.subSequence(0, currentDisplayText.length - 1)
     }
 
-    fun calculateCurrentDisplay(){
-        var calc = Calculations()
-        var result = calc.Calculate( binding.displayTextView.text.toString())
+    fun truncateToInteger(){
 
-        //Truncate to integer if decimal place contains zero
-        if(result.toString().contains(Regex("^[0-9]?[.][1-9]+$"))){
-            binding.displayTextView.text = result.toString()
-        }
-        else{
-            binding.displayTextView.text = result.roundToInt().toString()
-        }
+    }
+
+    fun calculateCurrentDisplay(){
+
+        //Use the MOZILLA RHINO - JavaScript Engine library to solve the display's arithmetic
+        val context: Context = Context.enter()
+        context.setOptimizationLevel(-1)
+        val scope: Scriptable = context.initStandardObjects()
+        var result: Any = context.evaluateString(scope,  binding.displayTextView.text.toString(), "<cmd>", 1, null)
+        binding.displayTextView.text = result.toString()
     }
 
     fun calculateSquareRoot(){
-        var calc = Calculations()
-        var result = calc.Calculate( binding.displayTextView.text.toString())
-        result = sqrt(result)
-        if(result.toString().contains(Regex("^[0-9]?[.][1-9]+$"))){
-            binding.displayTextView.text = result.toString()
-        }
-        else {
-            binding.displayTextView.text = result.roundToInt().toString()
-        }
+        binding.displayTextView.setText("Math.sqrt(" + binding.displayTextView.text.toString() + ")")
+        calculateCurrentDisplay()
+
     }
 }
